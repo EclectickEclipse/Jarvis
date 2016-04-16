@@ -59,8 +59,7 @@ class Jarvis(object):
         """
         :param pathtolibs: The path to the the directory that contains the save files.
         :return: Returns either a jarvis runtime, or None.
-        """
-        with open(pathtolibs, 'w') as f:
+        """        with open(pathtolibs, 'w') as f:
             creader = csv.reader(f)
             table = []
             for row in creader:
