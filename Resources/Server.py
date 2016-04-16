@@ -1,21 +1,15 @@
 #! /usr/local/bin/python
 
-
-# VERSIONS
-# kl;jqwe;rkljqwk;rlqwejkrq;wlkejr
-
-"""
-
-"""
-
 import os
 import sys
 import time
 
 from Resources.Libraries import Library
 
+# TODO Sanitize imports.
 
-class JarvisServer:
+
+class JarvisServer(object):
     """ Initiates a new socket for Jarvis to use, and maintains a list of available Jarvis hosts on the network.
 
     Uses NMAP to scan for active TCP connections on port 5000, and maintains a list of possible hosts. Further defines
@@ -33,8 +27,10 @@ class JarvisServer:
     :JarvisServer.is_scanning: A boolean to notify the user if Jarvis is scanning for new Jarvis's in the background.
     :JarvisServer.initialized: A boolean to signify when initialization is complete.
     """
+    # TODO Futher document JarvisServer.
     # TODO Further define a socket and listening thread for JarvisServer to use.
 
+    # TODO Restructure start().
     def start(self):
         can_continue = True
 
@@ -93,6 +89,7 @@ class JarvisServer:
         self.Threads.append(t)
         return t
 
+    # TODO Deprecate status().
     def status(self):
         """ Compiles information pertaining to the status. :returns: A dict containing status information. """
 
@@ -120,6 +117,7 @@ class JarvisServer:
 
         return x
 
+    # TODO Restructure shutdown().
     def shutdown(self):
         """ Ensures that all persistent background threads are closed. """
 
@@ -160,6 +158,7 @@ class JarvisServer:
             sys.stderr.write('Could not dump JarvisServer.Hosts...')
             return False
 
+    # TODO Deprecate load_hosts_fromfile.
     def load_hosts_fromfile(self):
         """ Loads JarvisServer.Hosts from Library.
 
@@ -221,6 +220,7 @@ class JarvisServer:
             del self.Hosts[ip]
             self.__hosts_lock.release()
 
+    # TODO Deprecate __socket_builder(). Having the code it performs outside of __init__ is unnecessary.
     def __socket_builder(self):
         """ Initiates all instance socket information. """
 
@@ -232,6 +232,7 @@ class JarvisServer:
         self.connections = []
         self.has_scan, self.is_scanning = False, False
 
+    # TODO Deprecate __thread_builder. Having the code it performs outside of __init__ is unnecessary.
     def __thread_builder(self):
         """ Initiates all instance thread information."""
 
@@ -247,6 +248,7 @@ class JarvisServer:
         self.Threads = []
 
     def __init__(self):
+        # TODO Restructure __init__ function.
         """ Initiates JarvisServer. """
         self.initialized = False
         # Initialize socket resources
