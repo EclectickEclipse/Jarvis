@@ -1,0 +1,19 @@
+## This is a registry of trusted devices accepted on wifi.
+
+## This file has its own syntax for proper interaction with the repository.
+## All lines preceeded with ## are the safest way to avoid the python algorithm
+##  accidentally catching and using any commented code. In effect, the algorithm
+##  only looks for a specific string of text. This can be changed by changing 
+##  the source code to send a value other than 'key:' to 
+##  fSearch.search_registry(). The algorithm will see a line beginning with
+##  'key.' and instantly pass the rest of the line to the algorithm. To ensure
+##  the algorithm avoids any issues at compile time, it shaves off the last 
+##  character of the line of text, assuming it has a newline. As such, only one
+##  valuable string of text can be stored after a tag on a line.
+## The format of the tag you use is specific. It must have a ':' character on
+##  the 4th character position. Technically, the preceeding text is redundant,
+##  but ensures greater accuracy by the algorithm.
+
+## USER 1
+key:C0:1A:DA:7C:5C:F5
+## END

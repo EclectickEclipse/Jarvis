@@ -1,0 +1,7 @@
+# Jarvis - Abstract
+---
+
+`Jarvis` is intended to eventually become a fully fledged AI, but at the time being, presents itself as a network script runner. Upon runtime, Jarvis automatically Jarvis uses `Resources.JarvisServer` announce itself to the network and register itself to all listening `JarvisServer`'s. This network of `JarvisServer`'s then announces its list of internal scripts (`Resources.Scripts.*`) to the network and requests an updated list of remote scripts available on each seperate host in `.jarv` Library. This Library is generated using  `Resources.Libraries` to `pickle` serialize information between individually run _Python_ and _Bash_ scripts from `Resources.Scripts.*`. `Jarvis` will then execute its scripts when given an input denoting the script to run. `Jarvis` will then look at all available `JarvisServer`'s and determines the most effective machine to run the script input from the user. Once this has been determined, that host will perform a small series of communication with the remote host to run that hosts local script runner. To enable ease of implementation, `Jarvis` will have an api in which the user can interact with to perform its internal actions. 
+
+
+### Developed by Ariana Giroux of Eklectick Media Solutions.
