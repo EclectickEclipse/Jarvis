@@ -84,7 +84,6 @@ class Jarvis(object):
             cwriter.write('JarvisShutdown%s' % time.time(), reason)
 
 
-
 class Scratchpad(Jarvis):
     """ An object used for testing and development of new central features of Jarvis. """
 
