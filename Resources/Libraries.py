@@ -17,6 +17,7 @@ class Library:
     def __init__(self):
         pass
 
+    # Deprecated
     @staticmethod
     def build_library(library, keys, values):
         for x, y in zip(keys, values):
