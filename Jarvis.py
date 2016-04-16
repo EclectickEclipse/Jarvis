@@ -6,6 +6,8 @@
 import argparse
 
 from Resources.AppHandler import *
+from Resources.Libraries import Library
+import csv, time
 
 # TODO Further define core functionality of Jarvis to include use of JarvisServer.
 # TODO Design a mainloop for Jarvis to ensure persistence of the main thread.
@@ -34,6 +36,8 @@ class Jarvis(object):
             'Resources': self.running_dir + '/Resources',
         }
 
+        # TODO Define loading jarvis runtime from shutdown.
+
         # TODO Define runtime flags
 
         self.parsed_args = parser.parse_args()
@@ -49,6 +53,36 @@ class Jarvis(object):
                 print(ex.interactive())
             except KeyboardInterrupt:
                 break
+
+    @staticmethod
+    def loader(pathtolibs):
+        """
+        :param pathtolibs: The path to the the directory that contains the save files.
+        :return: Returns either a jarvis runtime, or None.
+        """
+        with open(pathtolibs, 'w') as f:
+            creader = csv.reader(f)
+            table = []
+            for row in creader:
+                table.append(row)
+
+            if len(table) > 0:
+                return Library.unpack_libraries(table[-1][0])
+            else:
+                return None
+
+    def __del__(self, reason=None):
+        """ Further definition of Jarvis Garbage collection protocols.
+
+        :param reason: Include a string to log why Jarvis was shutdown without proper shutdown.
+        """
+        # TODO Determine a better location to host Jarvis Saves. They could potentially be very large files.
+        # Is it more prudent to use pickle here? I don't believe that a save of the main jarvis runtime would be needed.
+        Library.pickle_libraries([self], 'JarvisShutdown%s' % time.time(), self.jarvis_paths['Libs'])
+        with open(self.jarvis_paths['Libs'] + 'Saves', 'w') as f:
+            cwriter = csv.writer(f)
+            cwriter.write('JarvisShutdown%s' % time.time(), reason)
+
 
 
 class Scratchpad(Jarvis):
