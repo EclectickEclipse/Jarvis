@@ -19,6 +19,7 @@ class JarvisDetect:
     """
 
     # TODO Depricate Registry.lock use, use Resources.Libraries
+    # TODO Define a garbage collection protocol for JarvisDetect that enables proper closer of scan CSV files/logs.
     def __init__(self, lists_path=None):
         self.registry_location = './registry.lock'
         self.search_term = 'key:'
@@ -92,6 +93,7 @@ class JarvisDetect:
 
         :returns: A mutable list containing tuples with MacID's and the number of times of occurrence.
         """
+        # TODO Update detect() to use airodump-ng's CSV functionality.
         num_times_found = 0
 
         # detect handler
